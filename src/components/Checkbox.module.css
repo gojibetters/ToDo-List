@@ -1,0 +1,40 @@
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  background: var(--color-gray400);
+  padding: 1rem;
+
+  border-radius: 8px;
+
+  width: 100%;
+}
+
+.checkboxContainer p {
+  padding: 0 0.75rem;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxContainer button {
+  background: var(--color-purpleDark);
+}
+
+.itemContainer button {
+  background: transparent;
+  border: 0;
+  color: var(--color-gray300);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+}
+
+
+.itemContainer button:hover {
+  color: var(--color-danger);
+}
