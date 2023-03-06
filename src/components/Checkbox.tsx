@@ -8,7 +8,7 @@ interface Task {
 
 interface CheckboxProps {
   tasks: Task[]
-  setCheck: (id: any) => void
+  setCheck: (id: number) => void
 }
 
 export function Checkbox ({tasks, setCheck} : CheckboxProps) {

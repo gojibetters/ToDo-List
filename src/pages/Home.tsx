@@ -2,7 +2,7 @@ import styles from './Home.module.css'
 import logo from '../assets/logo.svg'
 import clipboard from '../assets/clipboard.svg'
 import { PlusCircle } from 'phosphor-react'
-import { ChangeEvent, HTMLInputTypeAttribute, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Checkbox } from '../components/Checkbox'
 
 interface Task {
@@ -18,7 +18,7 @@ function Home() {
 	const [doneTasks, setDoneTasks] = useState<Task[]>([])
 
 
-	function handleCreateTask(event: React.MouseEvent<HTMLButtonElement>){
+	function handleCreateTask(){
 		setTasks([...tasks, {id: tasks.length++, description: newTask}])
 		setNewTask('')
 	}
