@@ -2,7 +2,7 @@ import styles from './Home.module.css'
 import logo from '../assets/logo.svg'
 import clipboard from '../assets/clipboard.svg'
 import { PlusCircle } from 'phosphor-react'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { Checkbox } from '../components/Checkbox'
 
 interface Task {
@@ -18,7 +18,13 @@ function Home() {
 	const [doneTasks, setDoneTasks] = useState<Task[]>([])
 
 
-	function handleCreateTask(){
+	const handleCreateTask = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault()
+
+		if(newTask === ''){
+			return
+		}
+
 		setTasks([...tasks, {id: tasks.length++, description: newTask}])
 		setNewTask('')
 	}
@@ -61,7 +67,6 @@ function Home() {
 		setDoneTasks(filteredDoneTasks.length ? filteredDoneTasks : [])
 	}
 
-
 	return(
 		<div className={styles.container}>
 			<header className={styles.logoContainer}>
@@ -69,13 +74,14 @@ function Home() {
 			</header>
 
 			<div className={styles.containerTasks}>
-				<div className={styles.newTask}>
+				<form onSubmit={handleCreateTask} className={styles.newTask}>
 					<input type='text' placeholder='Adicione uma nova tarefa' onChange={handleNewTask} value={newTask}/>
-					<button onClick={handleCreateTask}>
+					<button type='submit'>
 						<strong>Criar</strong>
 						<PlusCircle size={16} />
 					</button>
-				</div>
+				</form>
+				
 
 				<div className={styles.tasks}>
 					<div className={styles.info}>
