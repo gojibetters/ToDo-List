@@ -9,9 +9,10 @@ interface Task {
 interface CheckboxProps {
   tasks: Task[]
   setCheck: (id: number) => void
+	handleDeleteItem: (id: number) => void
 }
 
-export function Checkbox ({tasks, setCheck} : CheckboxProps) {
+export function Checkbox ({tasks, setCheck, handleDeleteItem} : CheckboxProps) {
 
 	return (
 		<>
@@ -22,7 +23,7 @@ export function Checkbox ({tasks, setCheck} : CheckboxProps) {
 
 						<p>{item.description}</p>
 					</div>
-					<button>
+					<button onClick={() => handleDeleteItem(item.id)}>
 						<Trash size={16}/>
 					</button>
 				</div>

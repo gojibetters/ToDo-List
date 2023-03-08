@@ -36,7 +36,6 @@ function Home() {
 			const filteredTasks = doneTasks.filter(
 				(task) => task.id !== id
 			)
-			console.log(filteredTasks)
 			setDoneTasks(filteredTasks)
 		}
 
@@ -48,6 +47,18 @@ function Home() {
 			)
 			setDoneTasks(findedTask ?  [...doneTasks, findedTask] : doneTasks)
 		}
+	}
+
+	function handleDeleteItem(id: number) {
+		const filteredTasks = tasks.filter(
+			(item) => item.id !== id
+		)
+
+		const filteredDoneTasks = doneTasks.filter(
+			(item) => item.id !== id
+		)
+		setTasks(filteredTasks.length ? filteredTasks : [])
+		setDoneTasks(filteredDoneTasks.length ? filteredDoneTasks : [])
 	}
 
 
@@ -82,7 +93,7 @@ function Home() {
 
 					{tasks.length ? (
 						<div className={styles.listWithoutTopLine}>
-							<Checkbox tasks={tasks} setCheck={handleCheck} />
+							<Checkbox tasks={tasks} setCheck={handleCheck} handleDeleteItem={handleDeleteItem}/>
 						</div>
 					) :
 						(
