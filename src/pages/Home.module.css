@@ -44,7 +44,7 @@ html {
 
 .newTask input {
   background: var(--color-gray500);
-  color: var(--color-gray300);
+  color: var(--color-gray100);
 
 
   width: 100%;
@@ -53,13 +53,21 @@ html {
 
   border: 1px solid var(--color-gray700);
   border-radius: 6px;
+}
+
+.newTask input:focus {
+  outline: none;
+  border: 1px solid var(--color-purple-dark);
+}
 
 
+.newTask input::placeholder {
+  color: var(--color-gray300);
 }
 
 .newTask button {
   background: var(--color-blue-dark);
-  color: var(--color-white);
+  color: var(--color-gray100);
 
   width: 5.625rem;
   height: 3.25em;
@@ -77,6 +85,11 @@ html {
   cursor: pointer;
 
   gap: 0.5rem;
+}
+
+
+.newTask button:hover {
+  background: var(--color-blue);
 }
 
 .tasks {

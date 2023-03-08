@@ -13,15 +13,12 @@
 
 .checkboxContainer p {
   padding: 0 0.75rem;
+  color: var(--color-gray100);
 }
 
 .checkboxContainer {
   display: flex;
   align-items: center;
-}
-
-.checkboxContainer button {
-  background: var(--color-purpleDark);
 }
 
 .itemContainer button {

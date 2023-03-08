@@ -20,14 +20,12 @@ export function Checkbox ({tasks, setCheck, handleDeleteItem} : CheckboxProps) {
 				<div key={item.id} className={styles.itemContainer}>
 					<div className={styles.checkboxContainer}>
 						<input type='checkbox' id={String(item.id)} onChange={() => setCheck(item.id)}/>
-
 						<p>{item.description}</p>
 					</div>
 					<button onClick={() => handleDeleteItem(item.id)}>
 						<Trash size={16}/>
 					</button>
 				</div>
-
 			))}
 		</>
 	)
