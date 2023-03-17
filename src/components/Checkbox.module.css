@@ -9,7 +9,75 @@
   border-radius: 8px;
 
   width: 100%;
+  align-items: flex-start;
 }
+
+.labelContainer {
+  display: block;
+  position: relative;
+  padding-left: 1.2rem;
+  cursor: pointer;
+  font-size: 1.375rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  margin-top: 3px;
+}
+
+.labelContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.1rem;
+  width: 1.1rem;
+  background-color: transparent;
+  border: 2px solid var(--color-blue);
+  border-radius: 50%;
+}
+
+
+.labelContainer:hover input~.checkmark {
+  background-color: var(--color-blue-dark);
+  opacity: .8;
+}
+
+.labelContainer input:checked~.checkmark {
+  background-color: var(--color-purple-dark);
+  border: 2px solid var(--color-purple-dark);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.labelContainer input:checked~.checkmark:after {
+  display: block;
+}
+
+.labelContainer .checkmark:after {
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
 
 .checkboxContainer p {
   padding: 0 0.75rem;
@@ -18,7 +86,7 @@
 
 .checkboxContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .itemContainer button {
@@ -28,7 +96,8 @@
   cursor: pointer;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  margin-top: 3px;
 }
 
 

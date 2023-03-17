@@ -10,7 +10,6 @@ interface Task {
 	description: string
 }
 
-
 function Home() {
 
 	const [tasks, setTasks] = useState<Task[]>([])
