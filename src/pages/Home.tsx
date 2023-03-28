@@ -30,7 +30,7 @@ function Home() {
 	}
 
 	function handleNewTask(event: ChangeEvent<HTMLInputElement>){
-		setNewTask(event.target.value)
+		setNewTask(event.target.value.trimStart())
 	}
 
 	function handleCheckMark(id: number){
@@ -72,7 +72,7 @@ function Home() {
 			<div className={styles.containerTasks}>
 				<form onSubmit={handleCreateTask} className={styles.newTask}>
 					<input type='text' placeholder='Adicione uma nova tarefa' onChange={handleNewTask} value={newTask}/>
-					<button type='submit'>
+					<button type='submit' disabled={newTask === ''}>
 						<strong>Criar</strong>
 						<PlusCircle size={16} />
 					</button>

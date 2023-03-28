@@ -92,6 +92,10 @@ html {
   background: var(--color-blue);
 }
 
+.newTask button:disabled {
+  cursor: not-allowed;
+}
+
 .tasks {
   display: flex;
   flex-direction: column;
