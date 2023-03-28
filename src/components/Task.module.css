@@ -1,0 +1,52 @@
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--color-gray400);
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.selectedItemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--color-gray500);
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.itemContainer button,
+.selectedItemContainer button {
+  background: transparent;
+  border: 0;
+  color: var(--color-gray300);
+  cursor: pointer;
+
+  display: flex;
+  align-items: flex-start;
+  margin-top: 3px;
+}
+
+.itemContainer button:hover {
+  color: var(--color-danger);
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkboxContainer p {
+  padding: 0 0.75rem;
+  color: var(--color-gray100);
+  word-break: break-all;
+}
+
+.withRisk {
+  text-decoration: line-through;
+}
