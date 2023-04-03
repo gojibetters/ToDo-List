@@ -10,23 +10,34 @@ interface Task {
 
 interface CheckboxProps {
   tasks: Task[]
-  setCheck: (id: number) => void
-	handleDeleteItem: (id: number) => void
+  handleCheckTask: (id: number) => void
+	handleDeleteTask: (id: number) => void
 }
 
-export function Task ({tasks, setCheck, handleDeleteItem} : CheckboxProps) {
+export function Task ({tasks, handleCheckTask, handleDeleteTask} : CheckboxProps) {
 
 	return (
 		<>
 			{tasks.map((item) => (
-				<div key={item.id} className={item.status ? styles.selectedItemContainer : styles.itemContainer}>
-					<div className={styles.checkboxContainer}>
-						<RadioButton onChange={setCheck} value={item.id}/>
-						<p className={item.status ? styles.withRisk : ''}>{item.description}</p>
+				<div key={item.id} className={item.status ? styles.checkedTask : styles.uncheckedTask}>
+
+					<div className={styles.checkbox}>
+						<RadioButton
+							onChange={handleCheckTask}
+							value={item.id}
+						/>
+						
+						<p
+							className={item.status ? styles.checked : ''}
+						>
+							{item.description}
+						</p>
 					</div>
-					<button onClick={() => handleDeleteItem(item.id)}>
+
+					<button onClick={() => handleDeleteTask(item.id)}>
 						<Trash size={16}/>
 					</button>
+
 				</div>
 			))}
 		</>

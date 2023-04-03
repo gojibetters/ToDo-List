@@ -14,24 +14,22 @@ interface Task {
 function Home() {
 
 	const [tasks, setTasks] = useState<Task[]>([])
-	const [newTask, setNewTask] = useState('')
+	const [typedNewTask, setTypedNewTask] = useState('')
 
+	function handleTypedNewTask (event: ChangeEvent<HTMLInputElement>) {
+		setTypedNewTask(event.target.value.trimStart())
+	}
 
-	const handleCreateTask = (event: FormEvent<HTMLFormElement>) => {
+	function handleCreateTask (event: FormEvent<HTMLFormElement>) {
 		event.preventDefault()
 
-		if(newTask !== ''){
-			// console.log([...tasks, {id: tasks.length++, description: newTask, status: false}])
-			setTasks([...tasks, {id: tasks.length++, description: newTask, status: false}])
-			setNewTask('')	
+		if(typedNewTask !== ''){
+			setTasks([...tasks, {id: tasks.length++, description: typedNewTask, status: false}])
+			setTypedNewTask('')	
 		}
 	}
 
-	function handleNewTask(event: ChangeEvent<HTMLInputElement>){
-		setNewTask(event.target.value.trimStart())
-	}
-
-	function handleCheckMark(id: number){
+	function handleCheckTask(id: number){
 
 		const changeState = tasks.map(
 			task => {
@@ -54,7 +52,7 @@ function Home() {
 		setTasks(sortedTasks)
 	}
 
-	function handleDeleteItem(id: number) {
+	function handleDeleteTask(id: number) {
 		const filteredTasks = tasks.filter(
 			(item) => item.id !== id
 		)
@@ -62,18 +60,27 @@ function Home() {
 		setTasks(filteredTasks.length ? filteredTasks : [])
 	}
 
-	const taskCheckedLength = tasks.length > 0 ? tasks.filter((task) => task.status === true).length : 0
+	const checkedTaskSize = tasks.length > 0 ? tasks.filter((task) => task.status === true).length : 0
+	const typedTaskIsEmpty = typedNewTask === ''
 
 	return (
 		<div className={styles.container}>
-			<header className={styles.logoContainer}>
+			<header className={styles.logo}>
 				<a href='#'><img src={logo} /></a>
 			</header>
 
 			<div className={styles.containerTasks}>
 				<form onSubmit={handleCreateTask} className={styles.newTask}>
-					<input type='text' placeholder='Adicione uma nova tarefa' onChange={handleNewTask} value={newTask}/>
-					<button type='submit' disabled={newTask === ''}>
+					<input
+						type='text'
+						placeholder='Adicione uma nova tarefa'
+						onChange={handleTypedNewTask} value={typedNewTask}
+					/>
+
+					<button
+						type='submit'
+						disabled={typedTaskIsEmpty}
+					>
 						<strong>Criar</strong>
 						<PlusCircle size={16} />
 					</button>
@@ -81,35 +88,43 @@ function Home() {
 				
 				<div className={styles.tasks}>
 					<div className={styles.info}>
+
 						<div className={styles.created}>
-							<strong>
-							Tarefas criadas <button>{tasks.length}</button>
+							<strong>Tarefas criadas 
+								<button>{tasks.length}</button>
 							</strong>
 						</div>
+
 						<div className={styles.done}>
-							<strong>
-							Concluídas <button>{tasks.length ?  `${taskCheckedLength} de ${tasks.length}` : taskCheckedLength}</button>
+							<strong>Concluídas 
+								<button>{tasks.length ?  `${checkedTaskSize} de ${tasks.length}` : checkedTaskSize}</button>
 							</strong>
 						</div>
+
 					</div>
 
-					{tasks.length ? (
-						<div className={styles.listWithoutTopLine}>
-							<Task tasks={tasks} setCheck={handleCheckMark} handleDeleteItem={handleDeleteItem}/>
-						</div>
-					) : (
-						<div className={styles.list}>
-							<img src={clipboard}/>
-
-							<div className={styles.containerText}>
-								<span>
-									<strong>Você ainda não tem tarefas cadastradas</strong>
-								</span>
-								<span>Crie tarefas e organize seus itens a fazer</span>
+					{tasks.length ?
+						(
+							<div className={styles.listWithoutTopLine}>
+								<Task
+									tasks={tasks}
+									handleCheckTask={handleCheckTask}
+									handleDeleteTask={handleDeleteTask}
+								/>
 							</div>
+						) : (
+							<div className={styles.listWithTopLine}>
+								<img src={clipboard}/>
 
-						</div>
-					)}
+								<div className={styles.emptyTasks}>
+									<span>
+										<strong>Você ainda não tem tarefas cadastradas</strong>
+									</span>
+									<span>Crie tarefas e organize seus itens a fazer</span>
+								</div>
+
+							</div>
+						)}
 
 				</div>
 			</div>

@@ -8,9 +8,7 @@ html {
   align-items: center;
 }
 
-
-
-.logoContainer {
+.logo {
   background: var(--color-gray700);
   height: 12.5rem;
 
@@ -137,7 +135,7 @@ html {
   font-size: 0.75rem;
 }
 
-.containerText {
+.emptyTasks {
   display: flex;
   flex-direction: column;
 }
@@ -155,7 +153,7 @@ html {
   gap: 1rem;
 }
 
-.list {
+.listWithTopLine {
   border-top: 1px solid var(--color-gray300);
   border-radius: 8px;
 

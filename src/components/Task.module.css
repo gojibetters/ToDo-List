@@ -1,4 +1,4 @@
-.itemContainer {
+.uncheckedTask {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   align-items: flex-start;
 }
 
-.selectedItemContainer {
+.checkedTask {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,8 +20,8 @@
   align-items: flex-start;
 }
 
-.itemContainer button,
-.selectedItemContainer button {
+.uncheckedTask button,
+.checkedTask button {
   background: transparent;
   border: 0;
   color: var(--color-gray300);
@@ -32,21 +32,21 @@
   margin-top: 3px;
 }
 
-.itemContainer button:hover {
+.uncheckedTask button:hover {
   color: var(--color-danger);
 }
 
-.checkboxContainer {
+.checkbox {
   display: flex;
   align-items: flex-start;
 }
 
-.checkboxContainer p {
+.checkbox p {
   padding: 0 0.75rem;
   color: var(--color-gray100);
   word-break: break-all;
 }
 
-.withRisk {
+.checked {
   text-decoration: line-through;
 }
