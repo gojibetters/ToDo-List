@@ -15,18 +15,16 @@ function Home() {
 
 	const [tasks, setTasks] = useState<Task[]>([])
 	const [newTask, setNewTask] = useState('')
-	const [doneTasks, setDoneTasks] = useState<Task[]>([])
 
 
 	const handleCreateTask = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 
-		if(newTask === ''){
-			return
+		if(newTask !== ''){
+			// console.log([...tasks, {id: tasks.length++, description: newTask, status: false}])
+			setTasks([...tasks, {id: tasks.length++, description: newTask, status: false}])
+			setNewTask('')	
 		}
-
-		setTasks([...tasks, {id: tasks.length++, description: newTask, status: false}])
-		setNewTask('')
 	}
 
 	function handleNewTask(event: ChangeEvent<HTMLInputElement>){
@@ -34,6 +32,7 @@ function Home() {
 	}
 
 	function handleCheckMark(id: number){
+
 		const changeState = tasks.map(
 			task => {
 				if (task.id === id) {
@@ -41,27 +40,29 @@ function Home() {
 				}
 				return task
 			})
-		const sortedTasks = changeState.concat(changeState.splice(0, 1))
+
+		const filterUndoneTasks = changeState.filter(
+			(item) => item.status === false
+		)
+
+		const filterDoneTasks = changeState.filter(
+			(item) => item.status === true
+		)
+
+		const sortedTasks = filterUndoneTasks.concat(filterDoneTasks)
 
 		setTasks(sortedTasks)
 	}
-
 
 	function handleDeleteItem(id: number) {
 		const filteredTasks = tasks.filter(
 			(item) => item.id !== id
 		)
 
-		const filteredDoneTasks = doneTasks.filter(
-			(item) => item.id !== id
-		)
 		setTasks(filteredTasks.length ? filteredTasks : [])
-		setDoneTasks(filteredDoneTasks.length ? filteredDoneTasks : [])
 	}
 
 	const taskCheckedLength = tasks.length > 0 ? tasks.filter((task) => task.status === true).length : 0
-
-	console.log(tasks)
 
 	return (
 		<div className={styles.container}>
